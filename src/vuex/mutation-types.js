@@ -1,0 +1,10 @@
+
+export const ROOM_JOIN = 'ROOM_JOIN'
+export const ROOM_LEAVE = 'ROOM_LEAVE'
+export const ROOM_MESSAGE = 'ROOM_MESSAGE'
+export const ROOM_HISTORY = 'ROOM_HISTORY'
+export const ROOM_USERLIST = 'ROOM_USERLIST'
+export const ROOM_BLACKLIST = 'ROOM_BLACKLIST'
+export const ROOM_ADMINLIST = 'ROOM_ADMINLIST'
+export const CONNECT = 'CONNECT'
+export const DISCONNECT = 'DISCONNECT'

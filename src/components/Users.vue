@@ -58,9 +58,9 @@ export default {
 <style scoped>
 .users {
   display: flex;
-	flex: 1;
-	flex-direction: column;
-	overflow: auto;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;

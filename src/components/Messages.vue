@@ -51,15 +51,15 @@ export default {
 
 <style scoped>
 .messages {
-	display: flex;
-	flex: 1;
-	flex-direction: column;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   /* word-wrap: break-word; */
 }
 
 .messages-list {
   flex: 1;
-	overflow: auto;
+  overflow: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;

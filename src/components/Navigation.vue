@@ -88,36 +88,36 @@ export default {
 
 <style scoped>
 .navigation-content {
-	width: 100%;
-	height: 100%;
-	max-width: 1000px;
-	margin: 0;
-	display: flex;
-	flex: 1;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  margin: 0;
+  display: flex;
+  flex: 1;
 }
 
 .navigation-page {
-	display: flex;
-	flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .navigation-large {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 
 .navigation-small {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 
 @media (max-width: 767px) {
-	.navigation-large {
-		display: none !important;
-	}
+  .navigation-large {
+    display: none !important;
+  }
 }
 
 @media (min-width: 767px) {
-	.navigation-small {
-		display: none !important;
-	}
+  .navigation-small {
+    display: none !important;
+  }
 }
 </style>

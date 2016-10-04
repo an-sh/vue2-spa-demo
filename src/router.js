@@ -12,9 +12,9 @@ import store from './vuex/store'
 
 Vue.use(VueRouter)
 
-function requireConnection (route, redirect, next) {
+function requireConnection (to, from, next) {
   if (!store.getters.login) {
-    redirect({ path: '/' })
+    next({ path: '/' })
   } else {
     next()
   }

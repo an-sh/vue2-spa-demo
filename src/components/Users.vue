@@ -5,7 +5,6 @@
       <div class="ui active loader"></div>
     </div>
     <div v-if="error" class="ui negative message">
-      <i class="close icon"></i>
       <div class="header">
         {{ error }}
       </div>

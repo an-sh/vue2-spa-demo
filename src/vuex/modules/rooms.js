@@ -74,6 +74,10 @@ const mutations = {
 }
 
 const getters = {
+  rooms: function (state) {
+    return Object.keys(state.rooms)
+  },
+
   getHistory: function (state) {
     return function (roomName) {
       let room = state.rooms[roomName]

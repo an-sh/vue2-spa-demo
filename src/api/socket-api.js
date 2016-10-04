@@ -50,10 +50,17 @@ class SocketAPI {
     return store => { this.store = store }
   }
 
+  syncState () {
+    let rooms = this.store.getters.rooms
+    console.log(rooms)
+    rooms.forEach(room => this.join(room).then(() => this.adminlist(room)))
+  }
+
   connect (url, opts) {
     if (this.socket) { return Promise.resolve() }
     this.socket = io.connect(url, opts)
     this.setEvents()
+    this.socket.on('loginConfirmed', () => this.syncState())
     return eventToPromise.multi(
       this.socket, ['loginConfirmed'], ['error', 'loginRejected'])
   }

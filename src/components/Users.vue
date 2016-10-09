@@ -22,24 +22,20 @@ import socketAPI from '../api/socket-api'
 
 export default {
   name: 'users',
-  data: function () {
+  data () {
     return { loading: true, error: null }
   },
   computed: {
-    users: {
-      get: function () {
-        let users = this.$store.getters.getUsers(this.room)
-        return users ? users.slice().sort() : []
-      }
+    users () {
+      let users = this.$store.getters.getUsers(this.room)
+      return users ? users.slice().sort() : []
     },
-    room: {
-      get: function () {
-        return this.$route.params.room
-      }
+    room () {
+      return this.$route.params.room
     }
   },
   methods: {
-    getData: function () {
+    getData () {
       socketAPI.userlist(this.room)
                .then(() => { this.loading = false })
                .catch(err => {
@@ -48,7 +44,7 @@ export default {
                })
     }
   },
-  created: function () {
+  created () {
     this.getData()
   }
 }

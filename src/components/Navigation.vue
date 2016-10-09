@@ -58,20 +58,18 @@ import 'semantic/loader.css'
 export default {
   name: 'navigation',
   computed: {
-    login: {
-      get: function () {
-        return this.$store.getters.login
-      }
+    login () {
+      return this.$store.getters.login
     },
-    room: function () {
+    room () {
       return this.$route.params.room
     }
   },
   methods: {
-    navigate: function (name) {
+    navigate (name) {
       this.$router.push({name, params: {room: this.room}})
     },
-    changeRoute: function () {
+    changeRoute () {
       let name = this.$route.name
       $('.navigation-menu').dropdown('set selected', name)
     }
@@ -79,7 +77,7 @@ export default {
   watch: {
     '$route': 'changeRoute'
   },
-  mounted: function () {
+  mounted () {
     $('.ui.dropdown').dropdown()
     this.navigate('messages')
   }

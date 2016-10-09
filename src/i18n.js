@@ -33,7 +33,7 @@ const locales = {
 export function initlocales () {
   Vue.use(VueI18n)
   Vue.config.lang = 'en' // TODO use a dynamic locale detection
-  Object.keys(locales).forEach(function (lang) {
+  Object.keys(locales).forEach(lang => {
     Vue.locale(lang, locales[lang])
   })
 }

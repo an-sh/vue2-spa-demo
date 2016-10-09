@@ -52,7 +52,6 @@ class SocketAPI {
 
   syncState () {
     let rooms = this.store.getters.rooms
-    console.log(rooms)
     rooms.forEach(room => this.join(room).then(() => this.adminlist(room)))
   }
 

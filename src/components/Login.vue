@@ -37,7 +37,7 @@ import socketAPI from '../api/socket-api'
 
 export default {
   name: 'login',
-  data: function () {
+  data () {
     return { error: null, user: '', password: '' }
   },
   methods: {

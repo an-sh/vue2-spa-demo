@@ -18,7 +18,7 @@ const mutations = {
 }
 
 const getters = {
-  login: function (state) {
+  login (state) {
     return state.login
   }
 }

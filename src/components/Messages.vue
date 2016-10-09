@@ -9,7 +9,7 @@
               {{ msg.author }}
             </a>
             <div class="date">
-              {{ formatts(msg.timestamp) }}
+              {{ formatTS(msg.timestamp) }}
             </div>
           </div>
           <div class="text">
@@ -34,13 +34,13 @@ export default {
   name: 'messages',
   components: { Controls },
   methods: {
-    formatts: function (ts) {
+    formatTS (ts) {
       return moment(ts).format('hh:mm:ss a')
     }
   },
   computed: {
     messages: {
-      get: function () {
+      get () {
         let history = this.$store.getters.getHistory(this.$route.params.room)
         return history.slice().reverse()
       }

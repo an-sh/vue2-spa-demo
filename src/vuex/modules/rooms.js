@@ -74,11 +74,11 @@ const mutations = {
 }
 
 const getters = {
-  rooms: function (state) {
+  rooms (state) {
     return Object.keys(state.rooms)
   },
 
-  getHistory: function (state) {
+  getHistory (state) {
     return function (roomName) {
       let room = state.rooms[roomName]
       if (!room) return []
@@ -86,7 +86,7 @@ const getters = {
     }
   },
 
-  getUsers: function (state) {
+  getUsers (state) {
     return function (roomName) {
       let room = state.rooms[roomName]
       if (!room) return []
@@ -94,7 +94,7 @@ const getters = {
     }
   },
 
-  getBlacklist: function (state) {
+  getBlacklist (state) {
     return function (roomName) {
       let room = state.rooms[roomName]
       if (!room) return []
@@ -104,7 +104,7 @@ const getters = {
 }
 
 const actions = {
-  sendMessage: function (state, {roomName, message}) {
+  sendMessage (state, {roomName, message}) {
     return socketAPI.message(roomName, message)
   }
 }

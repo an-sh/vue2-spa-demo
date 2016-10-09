@@ -20,7 +20,7 @@ export default {
     }
   },
   methods: {
-    send: function () {
+    send () {
       if (this.message) {
         let roomName = this.$route.params.room
         this.$store.dispatch('sendMessage', {roomName, message: {textMessage: this.message}})

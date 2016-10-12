@@ -43,13 +43,13 @@ export default {
   methods: {
     login () {
       this.error = null
-      let query = 'user=' + this.user + '&password=' + this.password
+      let auth = { user: this.user, password: this.password }
       let url = process.env.MESSAGING_URL
       let room = 'Main'
-      socketAPI.ensureState(url, {query}, room)
+      socketAPI.ensureState(url, {auth}, room)
         .then(() => router.push({name: 'chat', params: {room}}))
         .catch(error => {
-          this.error = Array.isArray(error) ? error[0].toString() : error.toString()
+          this.error = error instanceof Array ? error[0].reason : error.toString()
         })
     }
   }

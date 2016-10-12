@@ -2,7 +2,7 @@
   "name": "vue2-semanticui2-demo",
   "version": "1.0.0",
   "description": "Vue.js 2 + SemanticUI 2 SPA demo.",
-  "author": "an-sh <an-sh@users.noreply.github.com>",
+  "author": "Andrey Sharapov <an.sh.1@yandex.ru> (https://github.com/an-sh)",
   "private": true,
   "scripts": {
     "build": "node build/build.js",
@@ -14,19 +14,18 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "author": "Andrey Sharapov <an.sh.1@yandex.ru> (https://github.com/an-sh)",
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.0.0",
-    "chat-service": ">= 0.10.0 < 2",
+    "chat-service": ">= 0.12.0 < 2",
+    "chat-service-ws-messaging": "^0.1.0",
     "moment": "^2.15.0",
-    "socket.io": "^1.4.5",
-    "socket.io-client": "^1.4.5",
     "vue": "^2.0.0",
     "vue-i18n": "^4.4.0",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
-    "vuex-router-sync": "^3.0.0"
+    "vuex-router-sync": "^3.0.0",
+    "ws-messaging": "^0.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

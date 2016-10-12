@@ -1,5 +1,5 @@
 
-import io from 'socket.io-client'
+import Client from 'ws-messaging/client'
 import eventToPromise from 'event-to-promise'
 
 import {
@@ -21,11 +21,11 @@ class SocketAPI {
   }
 
   setEvents () {
-    this.socket.on('disconnect', () => {
-      console.log('Disconnected from server')
+    this.socket.on('close', ev => {
+      console.log('Disconnected from server', ev)
       this.store.commit(DISCONNECT)
     })
-    this.socket.on('loginConfirmed', (login) => {
+    this.socket.on('connect', ([login]) => {
       console.log(`Current login is ${login}`)
       this.store.commit(CONNECT, { login })
     })
@@ -41,8 +41,8 @@ class SocketAPI {
       this.socket.close()
       this.socket = null
     })
-    this.socket.on('error', (...args) => {
-      console.error(...args)
+    this.socket.on('error', error => {
+      console.error(error)
     })
   }
 
@@ -56,12 +56,17 @@ class SocketAPI {
   }
 
   connect (url, opts) {
-    if (this.socket) { return Promise.resolve() }
-    this.socket = io.connect(url, opts)
-    this.setEvents()
-    this.socket.on('loginConfirmed', () => this.syncState())
-    return eventToPromise.multi(
-      this.socket, ['loginConfirmed'], ['error', 'loginRejected'])
+    if (!this.socket || this.socket.terminated) {
+      this.socket = new Client(url, opts)
+      this.setEvents()
+      this.socket.on('connect', () => this.syncState())
+      return eventToPromise.multi(
+        this.socket, ['connect'], ['error', 'close'])
+    } else {
+      this.socket.reconnect()
+      return eventToPromise.multi(
+        this.socket, ['connect'], ['error', 'close'])
+    }
   }
 
   ensureState (url, opts, room) {
@@ -71,11 +76,7 @@ class SocketAPI {
   }
 
   cmd (name, ...args) {
-    return new Promise((resolve, reject) => {
-      this.socket.emit(name, ...args, (error, data) => {
-        error ? reject(error) : resolve(data)
-      })
-    })
+    return this.socket.invoke(name, ...args).then(data => data[0])
   }
 
   join (roomName) {
@@ -89,25 +90,25 @@ class SocketAPI {
   }
 
   history (roomName) {
-    return this.cmd('roomHistoryGet', roomName).then((history) => {
+    return this.cmd('roomHistoryGet', roomName).then(history => {
       this.store.commit(ROOM_HISTORY, { roomName, history })
     })
   }
 
   userlist (roomName) {
-    return this.cmd('roomGetAccessList', roomName, 'userlist').then((list) => {
+    return this.cmd('roomGetAccessList', roomName, 'userlist').then(list => {
       this.store.commit(ROOM_USERLIST, { roomName, list })
     })
   }
 
   blacklist (roomName) {
-    return this.cmd('roomGetAccessList', roomName, 'blacklist').then((list) => {
+    return this.cmd('roomGetAccessList', roomName, 'blacklist').then(list => {
       this.store.commit(ROOM_BLACKLIST, { roomName, list })
     })
   }
 
   adminlist (roomName) {
-    return this.cmd('roomGetAccessList', roomName, 'adminlist').then((list) => {
+    return this.cmd('roomGetAccessList', roomName, 'adminlist').then(list => {
       this.store.commit(ROOM_ADMINLIST, { roomName, list })
     })
   }

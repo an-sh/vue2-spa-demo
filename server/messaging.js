@@ -1,15 +1,16 @@
 
 const ChatService = require('chat-service')
+const transport = require('chat-service-ws-messaging')
 
 const port = 8000
-const options = { port }
+const options = { port, transport }
 
 function onConnect (service, id) {
-  let { query } = service.transport.getHandshakeData(id)
-  if (!query.user) {
+  let { auth } = service.transport.getHandshakeData(id)
+  if (!auth || !auth.user) {
     return Promise.reject(new Error('No login data.'))
   } else {
-    return Promise.resolve(query.user)
+    return Promise.resolve(auth.user)
   }
 }
 

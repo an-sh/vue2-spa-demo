@@ -22,7 +22,7 @@ class SocketAPI {
 
   setEvents () {
     this.socket.on('close', ev => {
-      console.log('Disconnected from server', ev)
+      console.log('Disconnected from server: ', ev)
       this.store.commit(DISCONNECT)
     })
     this.socket.on('connect', ([login]) => {
@@ -33,17 +33,11 @@ class SocketAPI {
       this.store.commit(ROOM_MESSAGE, { roomName, message })
     })
     this.socket.on('roomAccessRemoved', (roomName) => {
-      console.log('Room access removed')
+      console.log(`Room ${roomName} access removed`)
       this.store.commit(ROOM_LEAVE, { roomName })
     })
-    this.socket.on('loginRejected', () => {
-      console.log('Login rejected')
-      this.socket.close()
-      this.socket = null
-    })
-    this.socket.on('error', error => {
-      console.error(error)
-    })
+    this.socket.on('connect', () => this.syncState())
+    this.socket.on('error', error => console.error(error))
   }
 
   vuexPlugin () {
@@ -56,17 +50,18 @@ class SocketAPI {
   }
 
   connect (url, opts) {
+    if (this.socket && this.socket.connected) {
+      return Promise.resolve()
+    }
+    console.log(this.socket)
     if (!this.socket || this.socket.terminated) {
       this.socket = new Client(url, opts)
       this.setEvents()
-      this.socket.on('connect', () => this.syncState())
-      return eventToPromise.multi(
-        this.socket, ['connect'], ['error', 'close'])
     } else {
       this.socket.reconnect()
-      return eventToPromise.multi(
-        this.socket, ['connect'], ['error', 'close'])
     }
+    return eventToPromise.multi(
+      this.socket, ['connect'], ['error', 'close'])
   }
 
   ensureState (url, opts, room) {

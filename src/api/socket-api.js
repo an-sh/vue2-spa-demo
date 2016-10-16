@@ -46,7 +46,7 @@ class SocketAPI {
 
   syncState () {
     let rooms = this.store.getters.rooms
-    rooms.forEach(room => this.join(room).then(() => this.adminlist(room)))
+    rooms.forEach(room => this.join(room))
   }
 
   connect (url, opts) {
@@ -61,12 +61,6 @@ class SocketAPI {
     }
     return eventToPromise.multi(
       this.socket, ['connect'], ['error', 'close'])
-  }
-
-  ensureState (url, opts, room) {
-    return this.connect(url, opts)
-      .then(() => this.join(room))
-      .then(() => this.adminlist(room))
   }
 
   cmd (name, ...args) {

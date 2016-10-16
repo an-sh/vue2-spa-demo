@@ -46,7 +46,8 @@ export default {
       let auth = { user: this.user, password: this.password }
       let url = process.env.MESSAGING_URL
       let room = 'Main'
-      socketAPI.ensureState(url, {auth}, room)
+      socketAPI.connect(url, {auth})
+        .then(() => socketAPI.join(room))
         .then(() => router.push({name: 'chat', params: {room}}))
         .catch(error => {
           this.error = error instanceof Array ? error[0].reason : error.toString()

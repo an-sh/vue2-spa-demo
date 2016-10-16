@@ -9,7 +9,7 @@
               {{ msg.author }}
             </a>
             <div class="date">
-              {{ formatTS(msg.timestamp) }}
+              {{ formatDate(msg.timestamp) }}
             </div>
           </div>
           <div class="text">
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import 'semantic/divider.css'
 import 'semantic/feed.css'
 
@@ -34,8 +33,13 @@ export default {
   name: 'messages',
   components: { Controls },
   methods: {
-    formatTS (ts) {
-      return moment(ts).format('hh:mm:ss a')
+    formatDate (ts) {
+      let date = new Date(ts)
+      let hours = date.getHours()
+      let minutes = date.getMinutes()
+      let seconds = date.getSeconds()
+      let ampm = hours >= 12 ? 'pm' : 'am'
+      return `${hours}:${minutes}:${seconds} ${ampm}`
     }
   },
   computed: {

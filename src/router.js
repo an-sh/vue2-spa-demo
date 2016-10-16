@@ -3,17 +3,21 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Login from './components/Login'
-// import Navigation from './components/Navigation'
-import Messages from './components/Messages'
-import Users from './components/Users'
-import Blacklist from './components/Blacklist'
-
 import store from './vuex/store'
 
-const Navigation = resolve => {
-  require.ensure(['./components/Navigation'], () => {
-    resolve(require('./components/Navigation'))
-  })
+const Navigation = r => {
+  require.ensure([], () => r(require('./components/Navigation')), 'chat')
+}
+
+const Messages = r => {
+  require.ensure([], () => r(require('./components/Messages')), 'chat')
+}
+const Users = r => {
+  require.ensure([], () => r(require('./components/Users')), 'chat')
+}
+
+const Blacklist = r => {
+  require.ensure([], () => r(require('./components/Blacklist')), 'chat')
 }
 
 Vue.use(VueRouter)

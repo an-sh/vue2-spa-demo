@@ -13,7 +13,7 @@ const store = new Vuex.Store({
     connection,
     rooms
   },
-  plugins: [socketAPI.vuexPlugin()]
+  plugins: [socketAPI.plugin]
 })
 
 export default store

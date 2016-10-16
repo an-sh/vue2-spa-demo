@@ -40,7 +40,7 @@ class SocketAPI {
     this.socket.on('error', error => console.error(error))
   }
 
-  vuexPlugin () {
+  get plugin () {
     return store => { this.store = store }
   }
 
@@ -53,7 +53,6 @@ class SocketAPI {
     if (this.socket && this.socket.connected) {
       return Promise.resolve()
     }
-    console.log(this.socket)
     if (!this.socket || this.socket.terminated) {
       this.socket = new Client(url, opts)
       this.setEvents()

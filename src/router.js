@@ -12,6 +12,7 @@ const Navigation = r => {
 const Messages = r => {
   require.ensure([], () => r(require('./components/Messages')), 'chat')
 }
+
 const Users = r => {
   require.ensure([], () => r(require('./components/Users')), 'chat')
 }

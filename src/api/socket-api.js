@@ -50,10 +50,12 @@ class SocketAPI {
   }
 
   connect (url, opts) {
-    if (this.socket && this.socket.connected) {
+    let sameLogin = this.store.getters.login === opts.auth.user
+    if (this.socket && this.socket.connected && sameLogin) {
       return Promise.resolve()
     }
-    if (!this.socket || this.socket.terminated) {
+    if (!this.socket || !sameLogin) {
+      if (this.socket) { this.socket.close() }
       this.socket = new Client(url, opts)
       this.setEvents()
     } else {

@@ -22,6 +22,8 @@ function cleanup () {
 
 process.on('SIGINT', cleanup)
 
-chat.addRoom('Main', { adminlist: ['admin'], owner: 'admin' }).catchReturn()
+chat.addRoom('Main', { adminlist: ['admin'], owner: 'admin' })
+  .then(() => chat.execUserCommand(true, 'roomAddToList', 'Main', 'blacklist', ['badUser']))
+  .catchReturn()
 
 chat.on('ready', () => console.log(`Messaging server: listening on port ${port}`))

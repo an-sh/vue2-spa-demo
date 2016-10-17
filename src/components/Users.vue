@@ -1,32 +1,21 @@
 
 <template>
-  <div class="users">
-    <div v-if="loading" class="ui active">
-      <div class="ui active loader"></div>
-    </div>
-    <div v-if="error" class="ui negative message">
-      <div class="header">
-        {{ error }}
-      </div>
-    </div>
-    <div v-if="!loading && !error" class="ui list userlist">
-      <div v-for="user in users" class="item">
-        {{ user }}
-      </div>
-    </div>
-  </div>
+  <list :error="error" :loading="loading" :listdata="listdata"></list>
 </template>
 
 <script>
 import socketAPI from '../api/socket-api'
 
+import List from './List'
+
 export default {
   name: 'users',
+  components: { List },
   data () {
     return { loading: true, error: null }
   },
   computed: {
-    users () {
+    listdata () {
       let users = this.$store.getters.getUsers(this.room)
       return users ? users.slice().sort() : []
     },
@@ -51,14 +40,4 @@ export default {
 </script>
 
 <style scoped>
-.users {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: auto;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-all;
-}
-
 </style>

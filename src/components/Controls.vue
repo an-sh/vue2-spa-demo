@@ -15,15 +15,14 @@ import 'semantic/icon.css'
 export default {
   name: 'controls',
   data () {
-    return {
-      message: ''
-    }
+    return { message: '' }
   },
   methods: {
     send () {
       if (this.message) {
         let roomName = this.$route.params.room
-        this.$store.dispatch('sendMessage', {roomName, message: {textMessage: this.message}})
+        let message = {textMessage: this.message}
+        this.$store.dispatch('sendMessage', {roomName, message})
         this.message = ''
       }
     }

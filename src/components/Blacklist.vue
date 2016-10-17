@@ -4,8 +4,7 @@
 </template>
 
 <script>
-import socketAPI from '../api/socket-api'
-
+import { listLoader, listGetter } from '../utils'
 import List from './List'
 
 export default {
@@ -16,25 +15,11 @@ export default {
   },
   computed: {
     listdata () {
-      let users = this.$store.getters.getBlacklist(this.room)
-      return users ? users.slice().sort() : []
-    },
-    room () {
-      return this.$route.params.room
-    }
-  },
-  methods: {
-    getData () {
-      socketAPI.blacklist(this.room)
-               .then(() => { this.loading = false })
-               .catch(err => {
-                 this.error = err.toString()
-                 this.loading = false
-               })
+      return listGetter.call(this, 'getBlacklist')
     }
   },
   created () {
-    this.getData()
+    listLoader.call(this, 'blacklist')
   }
 }
 </script>

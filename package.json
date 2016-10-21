@@ -18,7 +18,7 @@
   "dependencies": {
     "babel-runtime": "^6.0.0",
     "chat-service": ">= 0.12.0 < 2",
-    "chat-service-ws-messaging": "^0.1.1",
+    "chat-service-ws-messaging": "^0.2.0",
     "vue": "^2.0.0",
     "vue-i18n": "^4.4.0",
     "vue-router": "^2.0.0",

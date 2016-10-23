@@ -1,4 +1,4 @@
-/* global env, rm, mkdir, cp, echo */
+/* global env, rm, mkdir, cp */
 
 // https://github.com/shelljs/shelljs
 require('shelljs/global')

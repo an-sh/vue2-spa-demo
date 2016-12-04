@@ -35,11 +35,14 @@ export default {
   methods: {
     formatDate (ts) {
       let date = new Date(ts)
-      let hours = date.getHours()
-      let minutes = date.getMinutes()
-      let seconds = date.getSeconds()
+      let hours = this.pad(date.getHours())
+      let minutes = this.pad(date.getMinutes())
+      let seconds = this.pad(date.getSeconds())
       let ampm = hours >= 12 ? 'pm' : 'am'
       return `${hours}:${minutes}:${seconds} ${ampm}`
+    },
+    pad (num) {
+      return num >= 10 ? num : `0${num}`
     }
   },
   computed: {

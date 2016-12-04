@@ -80,7 +80,7 @@ class SocketAPI {
   }
 
   history (roomName) {
-    return this.cmd('roomHistoryGet', roomName).then(history => {
+    return this.cmd('roomRecentHistory', roomName).then(history => {
       this.store.commit(ROOM_HISTORY, { roomName, history })
     })
   }

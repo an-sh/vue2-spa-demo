@@ -23,9 +23,13 @@ class Room {
     this.userlist = []
     this.blacklist = []
     this.adminlist = []
+    this.hasHistory = false
   }
   mergeHistory (history) {
-    this.messages = history
+    if (!this.hasHistory) {
+      this.messages.push(...history)
+      this.hasHistory = true
+    }
   }
   addMessage (message) {
     this.messages.unshift(message)
@@ -106,6 +110,9 @@ const getters = {
 const actions = {
   sendMessage (state, {roomName, message}) {
     return socketAPI.message(roomName, message)
+  },
+  requestHistory (state, {roomName}) {
+    return socketAPI.history(roomName)
   }
 }
 

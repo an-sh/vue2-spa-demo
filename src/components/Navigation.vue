@@ -84,6 +84,7 @@ export default {
   mounted () {
     $('.ui.dropdown').dropdown()
     this.navigate('messages')
+    this.$store.dispatch('requestHistory', { roomName: this.room })
   }
 }
 </script>

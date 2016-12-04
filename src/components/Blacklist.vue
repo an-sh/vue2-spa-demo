@@ -2,7 +2,7 @@
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" scope="props">
-      <span class="banned">{{ props.item }}</span>
+      <div class="banned">{{ props.item }}</div>
     </template>
   </list>
 </template>

@@ -10,9 +10,7 @@
       </div>
     </div>
     <div v-if="!loading && !error" class="ui list">
-      <div v-for="item in listdata" class="item">
-        {{ item }}
-      </div>
+      <slot name="item" v-for="item in listdata" :item="item" class="item"></slot>
     </div>
   </div>
 </template>

@@ -1,6 +1,10 @@
 
 <template>
-  <list :error="error" :loading="loading" :listdata="listdata"></list>
+  <list :error="error" :loading="loading" :listdata="listdata">
+    <template slot="item" scope="props">
+      <span class="banned">{{ props.item }}</span>
+    </template>
+  </list>
 </template>
 
 <script>

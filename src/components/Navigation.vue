@@ -54,6 +54,7 @@ import 'semantic/segment.css'
 import 'semantic/menu.css'
 import 'semantic/icon.css'
 import 'semantic/loader.css'
+import store from '../vuex/store'
 
 export default {
   name: 'navigation',
@@ -76,6 +77,9 @@ export default {
   },
   watch: {
     '$route': 'changeRoute'
+  },
+  beforeRouteEnter (to, from, next) {
+    store.getters.login ? next() : next(false)
   },
   mounted () {
     $('.ui.dropdown').dropdown()

@@ -3,7 +3,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Login from './components/Login'
-import store from './vuex/store'
 
 const Navigation = r => {
   require.ensure([], () => r(require('./components/Navigation')), 'chat')
@@ -23,14 +22,6 @@ const Blacklist = r => {
 
 Vue.use(VueRouter)
 
-function requireConnection (to, from, next) {
-  if (!store.getters.login) {
-    next({ path: '/' })
-  } else {
-    next()
-  }
-}
-
 const routes = [
   { path: '/',
     component: Login,
@@ -39,7 +30,6 @@ const routes = [
   { path: '/chat/:room',
     component: Navigation,
     name: 'chat',
-    beforeEnter: requireConnection,
     children: [
       { path: 'messages',
         component: Messages,
@@ -57,7 +47,9 @@ const routes = [
   },
   { path: '/chat/:room',
     redirect: '/chat/:room/messages'
-  }
+  },
+  { path: '*',
+    redirect: '/' }
 ]
 
 const router = new VueRouter(

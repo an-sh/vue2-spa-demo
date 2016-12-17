@@ -12,9 +12,7 @@ import {
   ROOM_ADMINLIST
 } from '../mutation-types'
 
-const state = {
-  rooms: {}
-}
+const rooms = {}
 
 class Room {
   constructor (name) {
@@ -38,39 +36,39 @@ class Room {
 
 const mutations = {
   [ROOM_JOIN] (state, { roomName }) {
-    if (!state.rooms[roomName]) {
-      Vue.set(state.rooms, roomName, new Room())
+    if (!rooms[roomName]) {
+      Vue.set(rooms, roomName, new Room())
     }
   },
   [ROOM_LEAVE] (state, { roomName }) {
-    Vue.delete(state.rooms, roomName)
+    Vue.delete(rooms, roomName)
   },
   [ROOM_MESSAGE] (state, { roomName, message }) {
-    let room = state.rooms[roomName]
+    let room = rooms[roomName]
     if (room) {
       room.addMessage(message)
     }
   },
   [ROOM_HISTORY] (state, { roomName, history }) {
-    let room = state.rooms[roomName]
+    let room = rooms[roomName]
     if (room) {
       room.mergeHistory(history)
     }
   },
   [ROOM_USERLIST] (state, { roomName, list }) {
-    let room = state.rooms[roomName]
+    let room = rooms[roomName]
     if (room) {
       room.userlist = list
     }
   },
   [ROOM_BLACKLIST] (state, { roomName, list }) {
-    let room = state.rooms[roomName]
+    let room = rooms[roomName]
     if (room) {
       room.blacklist = list
     }
   },
   [ROOM_ADMINLIST] (state, { roomName, list }) {
-    let room = state.rooms[roomName]
+    let room = rooms[roomName]
     if (room) {
       room.adminlist = list
     }
@@ -79,12 +77,12 @@ const mutations = {
 
 const getters = {
   rooms (state) {
-    return Object.keys(state.rooms)
+    return Object.keys(rooms)
   },
 
   getHistory (state) {
     return function (roomName) {
-      let room = state.rooms[roomName]
+      let room = rooms[roomName]
       if (!room) return []
       return room.messages
     }
@@ -92,7 +90,7 @@ const getters = {
 
   getUsers (state) {
     return function (roomName) {
-      let room = state.rooms[roomName]
+      let room = rooms[roomName]
       if (!room) return []
       return room.userlist
     }
@@ -100,7 +98,7 @@ const getters = {
 
   getBlacklist (state) {
     return function (roomName) {
-      let room = state.rooms[roomName]
+      let room = rooms[roomName]
       if (!room) return []
       return room.blacklist
     }
@@ -117,7 +115,7 @@ const actions = {
 }
 
 export default {
-  state,
+  state: rooms,
   mutations,
   getters,
   actions

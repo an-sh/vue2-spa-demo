@@ -83,7 +83,7 @@ export default {
   },
   mounted () {
     $('.ui.dropdown').dropdown()
-    this.navigate('messages')
+    this.$router.replace({name: 'messages', params: {room: this.room}})
     this.$store.dispatch('requestHistory', { roomName: this.room })
   }
 }

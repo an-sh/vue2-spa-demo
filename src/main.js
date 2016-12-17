@@ -13,10 +13,5 @@ require('./directives')
 sync(store, router)
 initlocales()
 
-function render (createElement) {
-  return createElement('router-view')
-}
-
-const app = new Vue({router, store, render})
-
-app.$mount('#app')
+/* eslint-disable no-new */
+new Vue({el: '#app', router, store, render: h => h('router-view')})

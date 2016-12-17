@@ -18,12 +18,7 @@
 <script>
 export default {
   name: 'list',
-  props: ['loading', 'error', 'listdata'],
-  computed: {
-    room () {
-      return this.$route.params.room
-    }
-  }
+  props: ['loading', 'error', 'listdata']
 }
 </script>
 

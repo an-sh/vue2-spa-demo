@@ -57,6 +57,7 @@
     "postcss-media-minmax": "^2.1.2",
     "semantic-ui": "^2.2.4",
     "shelljs": "^0.7.4",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#4bd31607f665499543bbc83192225203ae6763d1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.6",
     "vue-loader": "^10.0.0",

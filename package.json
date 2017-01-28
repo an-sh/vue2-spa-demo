@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "build": "node build/build.js",
+    "build-stats": "node build/build-stats.js",
     "dev": "node build/dev-server.js",
     "lint": "eslint --ext .js,.vue src",
     "postinstall": "gulp --cwd semantic build",

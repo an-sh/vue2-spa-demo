@@ -8,7 +8,7 @@ import store from './vuex/store'
 import { sync } from 'vuex-router-sync'
 import { initlocales } from './i18n'
 
-require('./directives')
+import './directives'
 
 sync(store, router)
 initlocales()

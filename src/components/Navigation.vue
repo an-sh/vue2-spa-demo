@@ -55,16 +55,13 @@ import 'semantic/menu.css'
 import 'semantic/icon.css'
 import 'semantic/loader.css'
 import store from '../vuex/store'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'navigation',
+  props: ['room'],
   computed: {
-    login () {
-      return this.$store.getters.login
-    },
-    room () {
-      return this.$route.params.room
-    }
+    ...mapGetters(['login'])
   },
   methods: {
     navigate (name) {
@@ -83,7 +80,7 @@ export default {
   },
   mounted () {
     $('.ui.dropdown').dropdown()
-    this.$router.replace({name: 'messages', params: {room: this.room}})
+    this.$router.replace({name: 'messages', params: { room: this.room }})
     this.$store.dispatch('requestHistory', { roomName: this.room })
   }
 }

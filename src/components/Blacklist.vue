@@ -14,6 +14,7 @@ import List from './List'
 export default {
   name: 'blacklist',
   components: { List },
+  props: ['room'],
   data () {
     return { loading: true, error: null }
   },

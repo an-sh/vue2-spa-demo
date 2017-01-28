@@ -30,18 +30,22 @@ const routes = [
   { path: '/chat/:room',
     component: Navigation,
     name: 'chat',
+    props: true,
     children: [
       { path: 'messages',
         component: Messages,
-        name: 'messages'
+        name: 'messages',
+        props: true
       },
       { path: 'users',
         component: Users,
-        name: 'users'
+        name: 'users',
+        props: true
       },
       { path: 'blacklist',
         component: Blacklist,
-        name: 'blacklist'
+        name: 'blacklist',
+        props: true
       }
     ]
   },

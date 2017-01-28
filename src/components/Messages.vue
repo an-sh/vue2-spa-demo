@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="ui hidden divider"></div>
-    <controls></controls>
+    <controls :room="room"></controls>
   </div>
 </template>
 
@@ -32,6 +32,7 @@ import Controls from './Controls'
 export default {
   name: 'messages',
   components: { Controls },
+  props: ['room'],
   methods: {
     formatDate (ts) {
       let date = new Date(ts)
@@ -48,7 +49,7 @@ export default {
   computed: {
     messages: {
       get () {
-        let history = this.$store.getters.getHistory(this.$route.params.room)
+        let history = this.$store.getters.getHistory(this.room)
         return history.slice().reverse()
       }
     }

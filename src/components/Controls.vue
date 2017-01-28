@@ -14,13 +14,14 @@ import 'semantic/icon.css'
 
 export default {
   name: 'controls',
+  props: ['room'],
   data () {
     return { message: '' }
   },
   methods: {
     send () {
       if (this.message) {
-        let roomName = this.$route.params.room
+        let roomName = this.room
         let message = {textMessage: this.message}
         this.$store.dispatch('sendMessage', {roomName, message})
         this.message = ''

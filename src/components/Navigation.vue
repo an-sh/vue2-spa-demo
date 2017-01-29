@@ -24,15 +24,15 @@
       </div>
       <div class="navigation-large ui four item menu">
         <div class="ui item"><i class="user icon teal"></i>{{ login }}</div>
-        <router-link :to="{name: 'messages', params: {room: room}}" class="item">
+        <router-link :to="{name: 'messages'}" class="item">
           <i class="comments outline icon"></i>
           {{ $t('ui.messages') }}
         </router-link>
-        <router-link :to="{name: 'users', params: {room: room}}" class="item">
+        <router-link :to="{name: 'users'}" class="item">
           <i class="users icon"></i>
           {{ $t('ui.users') }}
         </router-link>
-        <router-link :to="{name: 'blacklist', params: {room: room}}" class="item">
+        <router-link :to="{name: 'blacklist'}" class="item">
           <i class="ban icon"></i>
           {{ $t('ui.blacklist') }}
         </router-link>
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     navigate (name) {
-      this.$router.push({name, params: {room: this.room}})
+      this.$router.push({name})
     },
     changeRoute () {
       let name = this.$route.name

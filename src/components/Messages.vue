@@ -26,6 +26,7 @@
 <script>
 import 'semantic/divider.css'
 import 'semantic/feed.css'
+import { mapGetters } from 'vuex'
 
 import Controls from './Controls'
 
@@ -49,10 +50,11 @@ export default {
   computed: {
     messages: {
       get () {
-        let history = this.$store.getters.getHistory(this.room)
+        let history = this.getHistory(this.room)
         return history.slice().reverse()
       }
-    }
+    },
+    ...mapGetters(['getHistory'])
   }
 }
 </script>

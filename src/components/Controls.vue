@@ -11,6 +11,7 @@
 <script>
 import 'semantic/button.css'
 import 'semantic/icon.css'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'controls',
@@ -23,10 +24,11 @@ export default {
       if (this.message) {
         let roomName = this.room
         let message = {textMessage: this.message}
-        this.$store.dispatch('sendMessage', {roomName, message})
+        this.sendMessage({roomName, message})
         this.message = ''
       }
-    }
+    },
+    ...mapActions(['sendMessage'])
   }
 }
 </script>

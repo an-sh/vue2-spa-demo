@@ -55,7 +55,7 @@ import 'semantic/menu.css'
 import 'semantic/icon.css'
 import 'semantic/loader.css'
 import store from '../vuex/store'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'navigation',
@@ -70,7 +70,8 @@ export default {
     changeRoute () {
       let name = this.$route.name
       $('.navigation-menu').dropdown('set selected', name)
-    }
+    },
+    ...mapActions(['requestHistory'])
   },
   watch: {
     '$route': 'changeRoute'
@@ -81,7 +82,7 @@ export default {
   mounted () {
     $('.ui.dropdown').dropdown()
     this.$router.replace({name: 'messages', params: { room: this.room }})
-    this.$store.dispatch('requestHistory', { roomName: this.room })
+    this.requestHistory({ roomName: this.room })
   }
 }
 </script>

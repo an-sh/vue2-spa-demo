@@ -1,10 +1,13 @@
 var path = require('path')
-var webpack = require('webpack')
-var config = require('../config')
 var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
+var config = require('../config')
+var vueLoaderConfig = require('./vue-loader.conf')
+var eslintFriendlyFormatter = require('eslint-friendly-formatter')
+var webpack = require('webpack')
 
-var env = process.env.NODE_ENV
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
   entry: {
@@ -12,16 +15,23 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: env === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+    modules: [
+      resolve('src'),
+      resolve('node_modules')
+    ],
     alias: {
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components'),
-      'semantic': path.resolve(__dirname, '../semantic/dist/components/')
+      'vue$': 'vue/dist/vue.common.js',
+      'src': resolve('src'),
+      'assets': resolve('src/assets'),
+      'components': resolve('src/components'),
+      'semantic': resolve('semantic/dist/components')
     }
   },
   module: {
@@ -30,23 +40,29 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [
-          path.join(projectRoot, 'src')
-        ],
-        exclude: [ /node_modules/, /semantic/ ]
+        include: [resolve('src'), resolve('test')],
+        options: {
+          formatter: eslintFriendlyFormatter
+        }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: vueLoaderConfig
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [
-          path.join(projectRoot, 'src')
-        ],
-        exclude: [ /node_modules/, /semantic/ ]
+        include: [resolve('src'), resolve('test')]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
+        query: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
@@ -66,14 +82,6 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        eslint: {
-          formatter: require('eslint-friendly-formatter')
-        },
-        context: ''
-      }
     })
   ]
 }

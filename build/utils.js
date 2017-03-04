@@ -30,7 +30,7 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         loader: sourceLoader,
-        fallbackLoader: 'vue-style-loader'
+        fallback: 'vue-style-loader'
       })
     } else {
       return ['vue-style-loader', sourceLoader].join('!')

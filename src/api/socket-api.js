@@ -102,7 +102,6 @@ class SocketAPI {
       this.store.commit(ROOM_ADMINLIST, { roomName, list })
     })
   }
-
 }
 
 const socketAPI = new SocketAPI()

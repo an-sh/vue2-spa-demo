@@ -1,12 +1,11 @@
 {
   "name": "vue2-spa-demo",
   "version": "1.0.0",
-  "description": "Vue.js 2 SPA demo.",
+  "description": "Vue.js spa demo.",
   "author": "Andrey Sharapov <an.sh.1@yandex.ru> (https://github.com/an-sh)",
   "private": true,
   "scripts": {
     "build": "node build/build.js",
-    "build-stats": "node build/build.js --stats",
     "dev": "node build/dev-server.js",
     "lint": "eslint --ext .js,.vue src",
     "start": "node server/web.js"

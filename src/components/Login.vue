@@ -1,37 +1,40 @@
 
 <template>
-  <div class="login">
-    <h1>{{ $t('ui.welcome') }}</h1>
-    <div class="ui form error">
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui left icon input"><i class="user icon"></i>
-            <input type="text" name="login" :placeholder="$t('ui.login')" @keyup.enter="login" v-model="user"/>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input"><i class="lock icon"></i>
-            <input type="password" name="password" :placeholder="$t('ui.password')" @keyup.enter="login" v-model="password"/>
-          </div>
-        </div>
-        <button type="button" @click="login()" class="ui button teal submit">
-          {{ $t('ui.auth') }}
-        </button>
-        <div class="ui message error">{{ error }}</div>
-      </div>
-    </div>
-  </div>
+  <v-container fluid>
+    <v-dialog v-model="hasError" persistent>
+      <v-card>
+        <v-card-row>
+          <v-card-text>
+            {{ error }}
+          </v-card-text>
+        </v-card-row>
+        <v-card-row actions>
+          <v-btn class="teal" @click.native="error = null">Ok</v-btn>
+        </v-card-row>
+      </v-card>
+    </v-dialog>
+    <v-row>
+      <v-col xs12 sm12 md8 offset-md2>
+        <v-card class="elevation-1 login">
+          <v-card-title class="blue darken-2 white--text">
+            {{ $t('ui.welcome') }}
+          </v-card-title>
+          <v-card-text>
+            <v-text-field name="login" :label="$t('ui.login')" @keyup.native.enter="login" v-model="user"></v-text-field>
+            <v-text-field name="password" type="password" :label="$t('ui.password')" @keyup.native.enter="login" v-model="password" persistent-hint :hint="$t('ui.phint')"></v-text-field>
+          </v-card-text>
+            <v-card-row actions>
+              <v-btn class="teal" @click.native="login()">
+                {{ $t('ui.auth') }}
+              </v-btn>
+            </v-card-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import 'semantic/form.css'
-import 'semantic/form.js'
-import 'semantic/message.css'
-import 'semantic/segment.css'
-import 'semantic/input.css'
-import 'semantic/button.css'
-import 'semantic/icon.css'
-
 import router from '../router'
 import socketAPI from '../api/socket-api'
 
@@ -39,6 +42,11 @@ export default {
   name: 'login',
   data () {
     return { error: null, user: '', password: '' }
+  },
+  computed: {
+    hasError () {
+      return Boolean(this.error)
+    }
   },
   methods: {
     login () {
@@ -58,10 +66,10 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  width: 400px;
-  max-width: 400px;
-  margin: 50px auto;
-  text-align: center;
+@media only screen and (min-width: 992px) {
+  .login {
+    max-width: 576px;
+    margin: auto;
+  }
 }
 </style>

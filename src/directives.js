@@ -1,18 +1,20 @@
 import Vue from 'vue'
 
-Vue.directive('auto-scroll', {
-  inserted (el) {
-    el.scrollTop = el.scrollHeight
-  },
-  update (el) {
-    if (el.scrollHeight === el.scrollTop + el.clientHeight) {
-      el.dataset.needsScroll = 'true'
-    }
-  },
-  componentUpdated (el) {
-    if (el.dataset.needsScroll) {
+export default function initDirectives () {
+  Vue.directive('auto-scroll', {
+    inserted (el) {
       el.scrollTop = el.scrollHeight
-      el.dataset.needsScroll = ''
+    },
+    update (el) {
+      if (el.scrollHeight === el.scrollTop + el.clientHeight) {
+        el.dataset.needsScroll = 'true'
+      }
+    },
+    componentUpdated (el) {
+      if (el.dataset.needsScroll) {
+        el.scrollTop = el.scrollHeight
+        el.dataset.needsScroll = ''
+      }
     }
-  }
-})
+  })
+}

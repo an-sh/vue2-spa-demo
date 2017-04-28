@@ -1,17 +1,18 @@
 
-import '../semantic/dist/components/reset.css'
-import '../semantic/dist/components/site.css'
-
 import Vue from 'vue'
+import Vuetify from 'vuetify'
+import '../node_modules/vuetify/dist/vuetify.min.css'
 import router from './router'
 import store from './vuex/store'
 import { sync } from 'vuex-router-sync'
-import { initlocales } from './i18n'
+import initLocales from './i18n'
+import initDirectives from './directives'
 
-import './directives'
+Vue.use(Vuetify)
 
 sync(store, router)
-initlocales()
+initLocales()
+initDirectives()
 
 /* eslint-disable no-new */
 new Vue({el: '#app', router, store, render: h => h('router-view')})

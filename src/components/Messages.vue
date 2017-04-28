@@ -1,31 +1,28 @@
 
 <template>
   <div class="messages">
-    <div class="messages-list ui feed" v-auto-scroll>
-      <div v-for="msg in messages" :key="msg.id" class="event message">
-        <div class="content">
-          <div class="summary">
-            <a class="user">
+    <div class="messages-list" v-auto-scroll>
+      <div v-for="msg in messages" :key="msg.id">
+        <div class="message ma-2 pa-2 elevation-2">
+          <div>
+            <a>
               {{ msg.author }}
             </a>
-            <div class="date">
-              {{ formatDate(msg.timestamp) }}
-            </div>
+            <span>
+              &mdash; {{ formatDate(msg.timestamp) }}
+            </span>
           </div>
-          <div class="text">
+          <div class="content">
             {{ msg.textMessage }}
           </div>
         </div>
       </div>
     </div>
-    <div class="ui hidden divider"></div>
     <controls :room="room"></controls>
   </div>
 </template>
 
 <script>
-import 'semantic/divider.css'
-import 'semantic/feed.css'
 import { mapGetters } from 'vuex'
 
 import Controls from './Controls'
@@ -40,8 +37,7 @@ export default {
       let hours = this.pad(date.getHours())
       let minutes = this.pad(date.getMinutes())
       let seconds = this.pad(date.getSeconds())
-      let ampm = hours >= 12 ? 'pm' : 'am'
-      return `${hours}:${minutes}:${seconds} ${ampm}`
+      return `${hours}:${minutes}:${seconds}`
     },
     pad (num) {
       return num >= 10 ? num : `0${num}`
@@ -60,11 +56,13 @@ export default {
 </script>
 
 <style scoped>
+.message {
+
+}
 .messages {
   display: flex;
   flex: 1;
   flex-direction: column;
-  /* word-wrap: break-word; */
 }
 
 .messages-list {

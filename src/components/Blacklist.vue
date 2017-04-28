@@ -2,7 +2,7 @@
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" scope="props">
-      <div class="banned">{{ props.item }}</div>
+      <v-list-item>{{ props.item }}</v-list-item>
     </template>
   </list>
 </template>

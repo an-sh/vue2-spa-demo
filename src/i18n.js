@@ -5,31 +5,35 @@ import VueI18n from 'vue-i18n'
 const locales = {
   en: {
     ui: {
-      welcome: 'Welcome',
-      login: 'Login',
-      password: 'Password',
       auth: 'Login',
-      message: 'Message...',
+      blacklist: 'Blacklist',
+      error: 'Error',
+      login: 'Login',
+      message: 'Type a message...',
       messages: 'Messages',
+      password: 'Password',
+      phint: 'leave empty for a demo mode',
       users: 'Users',
-      blacklist: 'Blacklist'
+      welcome: 'Welcome'
     }
   },
   ru: {
     ui: {
-      welcome: 'Добро пожаловать',
-      login: 'Логин',
-      password: 'Пароль',
       auth: 'Войти',
-      message: 'Сообщение...',
+      blacklist: 'Чёрный список',
+      error: 'Ошибка',
+      login: 'Логин',
+      message: 'Напишите сообщение...',
       messages: 'Сообщения',
+      password: 'Пароль',
+      phint: 'не требуется в демо режиме',
       users: 'Пользователи',
-      blacklist: 'Чёрный список'
+      welcome: 'Добро пожаловать'
     }
   }
 }
 
-export function initlocales () {
+export default function initLocales () {
   Vue.use(VueI18n)
   Vue.config.lang = 'en'
   Object.keys(locales).forEach(lang => {

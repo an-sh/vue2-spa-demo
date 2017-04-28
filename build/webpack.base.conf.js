@@ -3,7 +3,6 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var eslintFriendlyFormatter = require('eslint-friendly-formatter')
-var webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -30,8 +29,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': resolve('src'),
       'assets': resolve('src/assets'),
-      'components': resolve('src/components'),
-      'semantic': resolve('semantic/dist/components')
+      'components': resolve('src/components')
     }
   },
   module: {
@@ -76,12 +74,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
-  ]
+  }
 }

@@ -1,4 +1,4 @@
-# vue2-semanticui2-demo
+# vue2-spa-demo
 
 ![Screenshot](images/screenshot.png?raw=true "Screenshot")
 

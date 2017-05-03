@@ -1,7 +1,7 @@
 
 <template>
-  <v-container fluid class="pa-3 navigation-wrapper">
-    <div class="navigation elevation-1">
+  <v-container fluid class="navigation-wrapper">
+    <div class="navigation">
       <div>
         <v-tabs grow>
           <v-tab-item router :to="{name: 'messages'}" slot="activators">

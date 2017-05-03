@@ -3,7 +3,7 @@
   <div class="messages">
     <div class="messages-list" v-auto-scroll>
       <div v-for="msg in messages" :key="msg.id">
-        <div class="message ma-2 pa-2 elevation-2">
+        <div class="message ma-2 pa-2 elevation-1">
           <div>
             <a>
               {{ msg.author }}

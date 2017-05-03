@@ -1,21 +1,9 @@
 
 <template>
   <v-container fluid>
-    <v-dialog v-model="hasError" persistent>
-      <v-card>
-        <v-card-row>
-          <v-card-text>
-            {{ error }}
-          </v-card-text>
-        </v-card-row>
-        <v-card-row actions>
-          <v-btn class="teal" @click.native="error = null">Ok</v-btn>
-        </v-card-row>
-      </v-card>
-    </v-dialog>
     <v-row>
       <v-col xs12 sm12 md8 offset-md2>
-        <v-card class="elevation-1 login">
+        <v-card class="elevation-5 login">
           <v-card-title class="blue darken-2 white--text">
             {{ $t('ui.welcome') }}
           </v-card-title>
@@ -23,11 +11,23 @@
             <v-text-field name="login" :label="$t('ui.login')" @keyup.native.enter="login" v-model="user"></v-text-field>
             <v-text-field name="password" type="password" :label="$t('ui.password')" @keyup.native.enter="login" v-model="password" persistent-hint :hint="$t('ui.phint')"></v-text-field>
           </v-card-text>
-            <v-card-row actions>
-              <v-btn class="teal" @click.native="login()">
-                {{ $t('ui.auth') }}
-              </v-btn>
-            </v-card-row>
+          <v-card-row actions>
+            <v-dialog v-model="hasError" persistent class="errorDialog">
+              <v-card >
+                <v-card-row>
+                  <v-card-text>
+                    {{ error }}
+                  </v-card-text>
+                </v-card-row>
+                <v-card-row actions>
+                  <v-btn class="teal" @click.native="error = null">Ok</v-btn>
+                </v-card-row>
+              </v-card>
+            </v-dialog>
+            <v-btn class="teal" @click.native="login()">
+              {{ $t('ui.auth') }}
+            </v-btn>
+          </v-card-row>
         </v-card>
       </v-col>
     </v-row>

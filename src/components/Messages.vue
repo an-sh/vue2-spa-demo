@@ -3,17 +3,18 @@
   <div class="messages">
     <div class="messages-list" v-auto-scroll>
       <div v-for="msg in messages" :key="msg.id">
-        <div class="message ma-2 pa-2 elevation-1">
-          <div>
-            <a>
-              {{ msg.author }}
-            </a>
-            <span>
-              &mdash; {{ formatDate(msg.timestamp) }}
-            </span>
-          </div>
+        <div class="message ma-2">
           <div class="content">
-            {{ msg.textMessage }}
+            <span class="blue--text" href="">
+              {{ msg.author }}
+            </span>
+            <span class="message-date grey--text">
+              {{ formatDate(msg.timestamp) }}
+            </span>
+            <br>
+            <span>
+              {{ msg.textMessage }}
+            </span>
           </div>
         </div>
       </div>
@@ -71,5 +72,9 @@ export default {
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
+}
+
+.message-date {
+  font-size: 80%;
 }
 </style>

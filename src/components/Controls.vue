@@ -1,7 +1,7 @@
 
 <template>
   <v-card>
-    <v-card-text>
+    <v-card-text class="py-2">
       <v-row>
         <v-text-field :label="$t('ui.message')" @keyup.native.enter="send" v-model.trim="message" single-line class="my-0 mx-2"></v-text-field>
         <v-btn class="teal" floating small @click.native="send">

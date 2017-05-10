@@ -5,16 +5,14 @@
       <div v-for="msg in messages" :key="msg.id">
         <div class="message ma-2">
           <div class="content">
-            <span class="blue--text" href="">
+            <v-chip small class="green lighten-4">
+              <v-avatar class="teal">
+                {{ avatarLetter(msg.author) }}
+              </v-avatar>
               {{ msg.author }}
-            </span>
-            <span class="message-date grey--text">
-              {{ formatDate(msg.timestamp) }}
-            </span>
-            <br>
-            <span>
-              {{ msg.textMessage }}
-            </span>
+            </v-chip>
+            <span class="message-date grey--text">{{ formatDate(msg.timestamp) }}</span>
+            <div class="mx-2">{{ msg.textMessage }}</div>
           </div>
         </div>
       </div>
@@ -26,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { avatarLetter } from '../utils'
 import Controls from './Controls'
 
 export default {
@@ -42,7 +41,8 @@ export default {
     },
     pad (num) {
       return num >= 10 ? num : `0${num}`
-    }
+    },
+    avatarLetter
   },
   computed: {
     messages: {
@@ -71,7 +71,6 @@ export default {
   overflow: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-all;
 }
 
 .message-date {

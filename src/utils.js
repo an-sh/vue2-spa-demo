@@ -14,3 +14,7 @@ export function listGetter (getter) {
   let items = this.$store.getters[getter](room)
   return items ? items.slice().sort() : []
 }
+
+export function avatarLetter (item) {
+  return item[0].toUpperCase()
+}

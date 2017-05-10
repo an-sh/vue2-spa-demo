@@ -2,13 +2,20 @@
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" scope="props">
-      <v-list-item>{{ props.item }}</v-list-item>
+      <v-list-tile>
+        <span class="list-avatar-letter">
+          {{ avatarLetter(props.item) }}
+        </span>
+        <v-list-item>
+          {{ props.item }}
+        </v-list-item>
+      </v-list-tile>
     </template>
   </list>
 </template>
 
 <script>
-import { listLoader, listGetter } from '../utils'
+import { listLoader, listGetter, avatarLetter } from '../utils'
 import List from './List'
 
 export default {
@@ -23,11 +30,11 @@ export default {
       return listGetter.call(this, 'getUsers')
     }
   },
+  methods: {
+    avatarLetter
+  },
   created () {
     listLoader.call(this, 'userlist')
   }
 }
 </script>
-
-<style scoped>
-</style>

@@ -57,9 +57,6 @@ export default {
 </script>
 
 <style scoped>
-.message {
-
-}
 .messages {
   display: flex;
   flex: 1;
@@ -68,7 +65,8 @@ export default {
 
 .messages-list {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }

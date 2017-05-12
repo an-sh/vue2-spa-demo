@@ -4,14 +4,12 @@
     <v-alert error :value="error">
       {{ error }}
     </v-alert>
-    <div>
-      <div v-if="loading" class="loader primary--text">
-         <v-progress-circular indeterminate/>
-      </div>
-      <v-list v-if="!loading && !error">
-        <slot name="item" v-for="item in listdata" :item="item"></slot>
-      </v-list>
+    <div v-if="loading" class="loader primary--text loading-container">
+      <v-progress-circular indeterminate/>
     </div>
+    <v-list v-if="!loading && !error">
+      <slot name="item" v-for="item in listdata" :item="item"></slot>
+    </v-list>
   </div>
 </template>
 
@@ -23,7 +21,11 @@ export default {
 </script>
 
 <style scoped>
-.loader {
-  margin: auto;
+.loading-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>

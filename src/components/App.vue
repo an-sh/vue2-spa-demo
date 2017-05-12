@@ -34,13 +34,12 @@ export default {
   display: inline-block;
   font-size: 1em;
   width: 2.5em;
+  min-width: 2.5em;
   height: 2.5em;
   line-height: 2.5em;
   text-align: center;
   border-radius: 50%;
-  background: teal;
   vertical-align: middle;
   margin-right: 1em;
-  color: white;
 }
 </style>

@@ -3,7 +3,7 @@
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" scope="props">
       <v-list-tile>
-        <span class="list-avatar-letter">
+        <span class="list-avatar-letter white--text teal">
           {{ avatarLetter(props.item) }}
         </span>
         <v-list-item>

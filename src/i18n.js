@@ -2,7 +2,9 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
-const locales = {
+Vue.use(VueI18n);
+
+const messages = {
   en: {
     ui: {
       auth: 'Login',
@@ -33,10 +35,7 @@ const locales = {
   }
 }
 
-export default function initLocales () {
-  Vue.use(VueI18n)
-  Vue.config.lang = 'en'
-  Object.keys(locales).forEach(lang => {
-    Vue.locale(lang, locales[lang])
-  })
-}
+export const i18n = new VueI18n({
+  locale: 'en',
+  messages
+})

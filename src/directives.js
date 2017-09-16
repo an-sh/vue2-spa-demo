@@ -1,6 +1,5 @@
-import Vue from 'vue'
 
-export default function initDirectives () {
+export function autoScroll (Vue, options) {
   Vue.directive('auto-scroll', {
     inserted (el) {
       el.scrollTop = el.scrollHeight

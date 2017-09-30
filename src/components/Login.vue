@@ -1,36 +1,32 @@
 
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col xs12 sm12 md8 offset-md2>
+    <v-layout>
+      <v-flex xs12 sm12 md8 offset-md2>
         <v-card class="elevation-5 login">
-          <v-card-title class="blue darken-2 white--text">
-            {{ $t('ui.welcome') }}
+          <v-card-title class="headline blue darken-2 white--text">
+            <span>{{ $t('ui.welcome') }}</span>
           </v-card-title>
           <v-card-text>
             <v-text-field name="login" :label="$t('ui.login')" @keyup.native.enter="login" v-model="user"></v-text-field>
             <v-text-field name="password" type="password" :label="$t('ui.password')" @keyup.native.enter="login" v-model="password" persistent-hint :hint="$t('ui.phint')"></v-text-field>
           </v-card-text>
-          <v-card-row actions>
-            <v-dialog v-model="hasError" persistent class="errorDialog">
-              <v-card >
-                <v-card-row>
-                  <v-card-text>
-                    {{ error }}
-                  </v-card-text>
-                </v-card-row>
-                <v-card-row actions>
-                  <v-btn class="teal" @click.native="error = null">Ok</v-btn>
-                </v-card-row>
-              </v-card>
-            </v-dialog>
-            <v-btn class="teal" @click.native="login()">
-              {{ $t('ui.auth') }}
-            </v-btn>
-          </v-card-row>
+          <v-dialog v-model="hasError" persistent class="errorDialog">
+            <v-card>
+              <v-card-text>
+                {{ error }}
+              </v-card-text>
+              <v-card-actions>
+                <v-btn dark primary @click.native="error = null">Ok</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-btn dark primary @click.native="login()">
+            {{ $t('ui.auth') }}
+          </v-btn>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -54,8 +50,7 @@ export default {
       let auth = { user: this.user, password: this.password }
       let url = process.env.MESSAGING_URL
       let room = 'Main'
-      socketAPI.connect(url, {auth})
-        .then(() => socketAPI.join(room))
+      socketAPI.connect(url, {auth}).then(() => socketAPI.join(room))
         .then(() => router.push({name: 'chat', params: {room}}))
         .catch(error => {
           this.error = error instanceof Array ? error[0].reason : error.toString()

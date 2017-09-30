@@ -1,6 +1,6 @@
 
 <template>
-  <v-app class="app">
+  <v-app class="application application--light">
     <router-view></router-view>
   </v-app>
 </template>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style>
-.app {
+.application {
   display: flex;
   width: 100%;
   height: 100%;

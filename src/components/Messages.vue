@@ -6,8 +6,8 @@
         <div class="message ma-2">
           <div class="content">
             <v-chip small class="green lighten-4">
-              <v-avatar class="teal">
-                {{ avatarLetter(msg.author) }}
+              <v-avatar class="teal avatar">
+                <span>{{ avatarLetter(msg.author) }}</span>
               </v-avatar>
               {{ msg.author }}
             </v-chip>
@@ -73,5 +73,10 @@ export default {
 
 .message-date {
   font-size: 80%;
+}
+
+.avatar {
+  height: 26px!important;
+  width: 26px!important;
 }
 </style>

@@ -1,14 +1,9 @@
 
 <template>
-  <v-card>
-    <v-card-text class="py-2">
-      <v-row>
-        <v-text-field :label="$t('ui.message')" @keyup.native.enter="send" v-model.trim="message" single-line class="my-0 mx-2"></v-text-field>
-        <v-btn class="teal" floating small @click.native="send">
-          <v-icon>send</v-icon>
-        </v-btn>
-      </v-row>
-    </v-card-text>
+  <v-card flat>
+    <v-card-actions>
+      <v-text-field single-line solo :label="$t('ui.message')" v-model.trim="message" append-icon="send" :append-icon-cb="send" @keydown.enter.native.stop="send" :toggle-keys="[]"></v-text-field>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -28,6 +23,10 @@ export default {
         let message = {textMessage: this.message}
         this.sendMessage({roomName, message})
         this.message = ''
+        /* hack for vuetify 0.15 input cleanup regression */
+        try {
+          this.$children[0].lazyValue = ''
+        } catch (e) {}
       }
     },
     ...mapActions(['sendMessage'])

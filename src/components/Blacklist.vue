@@ -2,13 +2,15 @@
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" scope="props">
-      <v-list-tile>
-        <span class="list-avatar-letter white--text red">
-          {{ avatarLetter(props.item) }}
-        </span>
-        <v-list-item>
+      <v-list-tile @click="">
+        <v-list-tile-avatar>
+          <span class="list-avatar-letter white--text red">
+            {{ avatarLetter(props.item) }}
+          </span>
+        </v-list-tile-avatar>
+        <v-list-tile-content>
           {{ props.item }}
-        </v-list-item>
+        </v-list-tile-content>
       </v-list-tile>
     </template>
   </list>

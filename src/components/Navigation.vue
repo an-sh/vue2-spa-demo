@@ -2,22 +2,23 @@
 <template>
   <v-container fluid class="navigation-wrapper">
     <div class="navigation">
-      <div>
-        <v-tabs grow>
-          <v-tab-item router :to="{name: 'messages'}" slot="activators">
+      <v-tabs grow dark>
+        <v-tabs-bar>
+          <v-tabs-item :to="{ path: 'messages' }">
             <v-icon>chat</v-icon>
-          </v-tab-item>
-          <v-tab-item router :to="{name: 'users'}" slot="activators">
+          </v-tabs-item>
+          <v-tabs-item :to="{ path: 'users' }">
             <v-icon>group</v-icon>
-          </v-tab-item>
-          <v-tab-item router :to="{name: 'blacklist'}" slot="activators">
+          </v-tabs-item>
+          <v-tabs-item :to="{ path: 'blacklist' }">
             <v-icon>block</v-icon>
-          </v-tab-item>
-        </v-tabs>
-      </div>
-      <div class="page flexbox-item">
+          </v-tabs-item>
+        </v-tabs-bar>
+        <v-tabs-slider></v-tabs-slider>
+      </v-tabs>
+      <v-card flat class="page flexbox-item">
         <router-view class="page-content flexbox-item"></router-view>
-      </div>
+      </v-card>
     </div>
   </v-container>
 </template>
@@ -59,6 +60,7 @@ export default {
 .navigation-wrapper {
   width: 100%;
   height: 100%;
+  padding: 0;
 }
 
 .navigation {

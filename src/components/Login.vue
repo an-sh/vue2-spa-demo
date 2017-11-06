@@ -17,11 +17,11 @@
                 {{ error }}
               </v-card-text>
               <v-card-actions>
-                <v-btn dark primary @click.native="error = null">Ok</v-btn>
+                <v-btn dark color="primary" @click.native="error = null">Ok</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-btn dark primary @click.native="login()">
+          <v-btn dark color="primary" @click.native="login()">
             {{ $t('ui.auth') }}
           </v-btn>
         </v-card>

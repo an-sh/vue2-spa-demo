@@ -1,7 +1,7 @@
 
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
-    <template slot="item" scope="props">
+    <template slot="item" slot-scope="props">
       <v-list-tile @click="">
         <v-list-tile-avatar>
           <span class="list-avatar-letter white--text teal">

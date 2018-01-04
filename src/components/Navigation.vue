@@ -1,25 +1,20 @@
 
 <template>
-  <v-container fluid class="navigation-wrapper">
-    <div class="navigation">
-      <v-tabs grow dark>
-        <v-tabs-bar>
-          <v-tabs-item :to="{ path: 'messages' }">
-            <v-icon>chat</v-icon>
-          </v-tabs-item>
-          <v-tabs-item :to="{ path: 'users' }">
-            <v-icon>group</v-icon>
-          </v-tabs-item>
-          <v-tabs-item :to="{ path: 'blacklist' }">
-            <v-icon>block</v-icon>
-          </v-tabs-item>
-        </v-tabs-bar>
-        <v-tabs-slider></v-tabs-slider>
-      </v-tabs>
-      <v-card flat class="page flexbox-item">
-        <router-view class="page-content flexbox-item"></router-view>
-      </v-card>
-    </div>
+  <v-container fluid class="navigation">
+    <v-tabs dark grow centered color="blue darken-2">
+      <v-tab :to="{ path: 'messages' }">
+        <v-icon>chat</v-icon>
+      </v-tab>
+      <v-tab :to="{ path: 'users' }">
+        <v-icon>group</v-icon>
+      </v-tab>
+      <v-tab :to="{ path: 'blacklist' }">
+        <v-icon>block</v-icon>
+      </v-tab>
+    </v-tabs>
+    <v-card flat class="page flexbox-item">
+      <router-view class="page-content flexbox-item"></router-view>
+    </v-card>
   </v-container>
 </template>
 
@@ -57,16 +52,10 @@ export default {
   flex: 1;
 }
 
-.navigation-wrapper {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-}
-
 .navigation {
   width: 100%;
   height: 100%;
-
+  padding: 0;
   display: flex;
   flex-direction: column;
 }

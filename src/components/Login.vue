@@ -11,22 +11,22 @@
             <v-text-field name="login" :label="$t('ui.login')" @keyup.native.enter="login" v-model="user"></v-text-field>
             <v-text-field name="password" type="password" :label="$t('ui.password')" @keyup.native.enter="login" v-model="password" persistent-hint :hint="$t('ui.phint')"></v-text-field>
           </v-card-text>
-          <v-dialog v-model="hasError" persistent class="errorDialog">
-            <v-card>
-              <v-card-text>
-                {{ error }}
-              </v-card-text>
-              <v-card-actions>
-                <v-btn dark color="primary" @click.native="error = null">Ok</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
           <v-btn dark color="primary" @click.native="login()">
             {{ $t('ui.auth') }}
           </v-btn>
         </v-card>
       </v-flex>
     </v-layout>
+    <v-dialog max-width="500px" v-model="hasError">
+      <v-card>
+        <v-card-text>
+          {{ error }}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn dark color="primary" @click.native="error = null">Ok</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 

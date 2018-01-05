@@ -11,8 +11,7 @@
               </v-avatar>
               {{ msg.author }}
             </v-chip>
-            <span class="message-date grey--text">{{ formatDate(msg.timestamp) }}</span>
-            <div class="mx-2">{{ msg.textMessage }}</div>
+            <div class="mx-2 message-text">{{ msg.textMessage }}</div>
           </div>
         </div>
       </div>
@@ -71,12 +70,13 @@ export default {
   overflow-wrap: break-word;
 }
 
-.message-date {
-  font-size: 80%;
-}
-
 .avatar {
   height: 26px!important;
   width: 26px!important;
+}
+
+.message-text {
+  display: inline-flex;
+  align-items: center;
 }
 </style>

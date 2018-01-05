@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { listLoader, listGetter, avatarLetter } from '../utils'
+import { avatarLetter } from '../utils'
+import socketAPI from '../api/socket-api'
 import List from './List'
 
 export default {
@@ -29,14 +30,19 @@ export default {
   },
   computed: {
     listdata () {
-      return listGetter.call(this, 'getUsers')
+      let items = this.$store.getters.getUsers(this.room)
+      return items ? items.slice().sort() : []
     }
   },
   methods: {
     avatarLetter
   },
   created () {
-    listLoader.call(this, 'userlist')
+    this.loading = true
+    return socketAPI.userlist(this.room)
+      .then(() => { this.error = null })
+      .catch(err => { this.error = err.toString() })
+      .then(() => { this.loading = false })
   }
 }
 </script>

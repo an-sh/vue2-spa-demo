@@ -11,14 +11,14 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "chat-service": ">= 0.12.0 < 2",
-    "chat-service-ws-messaging": "^0.4.0",
+    "chat-service": "^0.15.0",
+    "chat-service-ws-messaging": "^0.5.2",
     "vue": "^2.5.13",
     "vue-i18n": "^7.3.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0",
-    "ws-messaging": "^0.7.0"
+    "ws-messaging": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.4",

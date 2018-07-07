@@ -8,11 +8,8 @@
 # install dependencies
 npm install
 
-# build with minification
-npm run build
-
 # serve built files at localhost:8080
-npm start
+npm run serve
 ```
 
 ## License

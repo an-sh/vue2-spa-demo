@@ -2,7 +2,7 @@
 <template>
   <v-card flat>
     <v-card-actions>
-      <v-text-field single-line solo :label="$t('ui.message')" v-model.trim="message" append-icon="send" :append-icon-cb="send" @keydown.enter.native="send"></v-text-field>
+      <v-text-field single-line solo :label="$t('ui.message')" v-model.trim="message" append-icon="send" @click:append="send" @keydown.enter.native="send"></v-text-field>
     </v-card-actions>
   </v-card>
 </template>

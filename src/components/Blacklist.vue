@@ -2,7 +2,7 @@
 <template>
   <list :error="error" :loading="loading" :listdata="listdata">
     <template slot="item" slot-scope="props">
-      <v-list-tile @click="">
+      <v-list-tile>
         <v-list-tile-avatar>
           <span class="list-avatar-letter white--text red">
             {{ avatarLetter(props.item) }}

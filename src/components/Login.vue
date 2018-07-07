@@ -48,7 +48,7 @@ export default {
     login () {
       this.error = null
       let auth = { user: this.user, password: this.password }
-      let url = process.env.MESSAGING_URL
+      let url = process.env.VUE_APP_MESSAGING_URL
       let room = 'Main'
       socketAPI.connect(url, {auth}).then(() => socketAPI.join(room))
         .then(() => router.push({name: 'chat', params: {room}}))

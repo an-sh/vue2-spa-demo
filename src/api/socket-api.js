@@ -1,4 +1,4 @@
-
+/* eslint-disable no-console */
 import Client from 'ws-messaging/client'
 import eventToPromise from 'event-to-promise'
 

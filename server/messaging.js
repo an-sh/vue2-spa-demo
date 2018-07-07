@@ -14,16 +14,18 @@ function onConnect (service, id) {
   }
 }
 
-const chat = new ChatService(options, {onConnect})
+function startChatService () {
+  const chat = new ChatService(options, {onConnect})
 
-function cleanup () {
-  chat.close().finally(() => process.exit())
+  chat.addRoom('Main', { adminlist: ['admin'], owner: 'admin' })
+    .then(() => chat.execUserCommand(true, 'roomAddToList', 'Main', 'blacklist', ['badUser']))
+    .catchReturn()
+
+  chat.on('ready', () => console.log(`Messaging server: listening on port ${port}`))
+
+  process.on('SIGINT', () => chat.close())
 }
 
-process.on('SIGINT', cleanup)
-
-chat.addRoom('Main', { adminlist: ['admin'], owner: 'admin' })
-  .then(() => chat.execUserCommand(true, 'roomAddToList', 'Main', 'blacklist', ['badUser']))
-  .catchReturn()
-
-chat.on('ready', () => console.log(`Messaging server: listening on port ${port}`))
+module.exports = {
+  startChatService
+}

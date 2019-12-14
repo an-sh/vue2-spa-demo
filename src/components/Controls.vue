@@ -20,8 +20,8 @@ export default {
     send () {
       if (this.message) {
         let roomName = this.room
-        let message = {textMessage: this.message}
-        this.sendMessage({roomName, message})
+        let message = { textMessage: this.message }
+        this.sendMessage({ roomName, message })
         this.message = ''
       }
     },

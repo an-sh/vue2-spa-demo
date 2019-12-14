@@ -15,7 +15,7 @@ function onConnect (service, id) {
 }
 
 function startChatService () {
-  const chat = new ChatService(options, {onConnect})
+  const chat = new ChatService(options, { onConnect })
 
   chat.addRoom('Main', { adminlist: ['admin'], owner: 'admin' })
     .then(() => chat.execUserCommand(true, 'roomAddToList', 'Main', 'blacklist', ['badUser']))

@@ -41,7 +41,7 @@ export default {
     }
   },
   mounted () {
-    this.$router.replace({name: 'messages', params: { room: this.room }})
+    this.$router.replace({ name: 'messages', params: { room: this.room } })
     this.requestHistory({ roomName: this.room })
   }
 }

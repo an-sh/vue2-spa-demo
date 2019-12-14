@@ -13,4 +13,4 @@ Vue.use(autoScroll)
 sync(store, router)
 
 /* eslint-disable no-new */
-new Vue({el: '#app', router, store, i18n, render: h => h('router-view')})
+new Vue({ el: '#app', router, store, i18n, render: h => h('router-view') })

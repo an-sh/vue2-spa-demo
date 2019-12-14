@@ -106,10 +106,10 @@ const getters = {
 }
 
 const actions = {
-  sendMessage (state, {roomName, message}) {
+  sendMessage (state, { roomName, message }) {
     return socketAPI.message(roomName, message)
   },
-  requestHistory (state, {roomName}) {
+  requestHistory (state, { roomName }) {
     return socketAPI.history(roomName)
   }
 }
